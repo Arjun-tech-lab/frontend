@@ -273,7 +273,7 @@ const LandingPage = () => {
               </li>
               <li>
                 <a href="tel:+15551234567" className="hover:text-gray-300">
-                  +1-555-123-4567
+                  +91 6360726962
                 </a>
               </li>
             </ul>
@@ -281,7 +281,7 @@ const LandingPage = () => {
 
           {/* Social Media */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Follow Us</h4>
+            <h4 className="text-lg font-bold mb-4"> </h4>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-blue-400">
                 <i className="fab fa-facebook fa-lg"></i>

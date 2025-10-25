@@ -5,6 +5,7 @@ import axios from "axios";
 
 import NavBar from "./Components/NavBar";
 import PotholeSeverity from "./Components/PotHoleSevrity"; // <-- AI Component
+import ProtectedRoutes from "./pages/protectedRoutes";
 
 import LandingPage from "./pages/LandingPage";
 import AboutUs from "./pages/Aboutus";
@@ -62,19 +63,34 @@ const App = () => {
         onLoginClick={handleLoginRedirect}
       />
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/About" element={<AboutUs />} />
-        <Route path="/Services" element={<Services />} />
-        <Route path="/Booking" element={<Booking />} />
-        <Route path="/ContactUs" element={<ContactUs />} />
-        <Route path="/Sucessfull" element={<SuccBooking />} />
-        <Route path="/admin" element={<Admin user={user} />} />
-        <Route path="/login" element={<Login onLogin={setUser} />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/admin/appointment" element={<Appointment />} />
-        <Route path="/potholeai" element={<PotholeSeverity />} /> 
-      </Routes>
+     
+
+<Routes>
+  <Route path="/" element={<LandingPage />} />
+  <Route path="/About" element={<AboutUs />} />
+  <Route path="/Services" element={<Services />} />
+  <Route path="/Booking" element={<Booking />} />
+  <Route path="/ContactUs" element={<ContactUs />} />
+  <Route path="/Sucessfull" element={<SuccBooking />} />
+  <Route
+    path="/admin"
+    element={
+      <ProtectedRoutes>
+        <Admin user={user} />
+      </ProtectedRoutes>
+    }
+  />
+  <Route path="/login" element={<Login onLogin={setUser} />} />
+  <Route path="/Signup" element={<Signup />} />
+  <Route path="/admin/appointment"element={
+      <ProtectedRoutes>
+        <Appointment />
+      </ProtectedRoutes>
+    }
+  />
+  <Route path="/potholeai" element={<PotholeSeverity />} />
+</Routes>
+
     </div>
   );
 };

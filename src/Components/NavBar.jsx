@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Import axios
+import axios from "axios";
 import image from "../assets/icon.jpg";
 
 const NavBar = ({ user, onLogout }) => {
+  const [menuOpen, setMenuOpen] = useState(false); // ✅ State for mobile menu
   const navigate = useNavigate();
 
   const handleLogoutClick = async () => {
     try {
-      // ✅ call backend logout endpoint
+      // call backend logout endpoint
       await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {}, { withCredentials: true });
 
-      // ✅ call parent App’s logout handler if provided
       if (onLogout) {
         await onLogout();
       }
 
-      navigate("/"); // ✅ redirect after logout
+      navigate("/"); // redirect after logout
     } catch (err) {
       console.error("Logout failed:", err);
     }
@@ -32,12 +32,13 @@ const NavBar = ({ user, onLogout }) => {
           </span>
         </Link>
 
+        {/* Hamburger Button */}
         <button
-          data-collapse-toggle="navbar-default"
           type="button"
           className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
-          aria-expanded="false"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(!menuOpen)} // ✅ Toggle menu
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -57,7 +58,8 @@ const NavBar = ({ user, onLogout }) => {
           </svg>
         </button>
 
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        {/* Mobile Menu */}
+        <div className={`${menuOpen ? "block" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link to="/" className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500">
@@ -65,34 +67,22 @@ const NavBar = ({ user, onLogout }) => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/About"
-                className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500"
-              >
+              <Link to="/About" className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500">
                 About
               </Link>
             </li>
             <li>
-              <Link
-                to="/Services"
-                className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500"
-              >
+              <Link to="/Services" className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500">
                 Services
               </Link>
             </li>
             <li>
-              <Link
-                to="/Booking"
-                className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500"
-              >
+              <Link to="/Booking" className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500">
                 Booking
               </Link>
             </li>
             <li>
-              <Link
-                to="/ContactUs"
-                className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500"
-              >
+              <Link to="/ContactUs" className="block py-2 px-3 text-white rounded-sm md:p-0 hover:bg-blue-500">
                 Contact
               </Link>
             </li>

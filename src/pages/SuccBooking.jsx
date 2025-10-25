@@ -6,8 +6,7 @@ const SuccBooking = () => {
   const { appointment } = location.state || {};
 
   // Backend URL for uploaded images
-  const backendImageUrl = `${import.meta.env.VITE_API_URL}
-/uploads/`;
+  const backendImageUrl = `${import.meta.env.VITE_API_URL}/uploads/`;
 
   return (
     <section className="min-h-screen bg-white py-12 antialiased dark:bg-gray-900 md:py-20">
