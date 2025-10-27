@@ -21,8 +21,7 @@ const ContactUs = () => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}
-/api/contact`, // make sure backend runs on 8080
+        `${import.meta.env.VITE_API_URL}/api/contact`, // make sure backend runs on 8080
         data
       );
 
