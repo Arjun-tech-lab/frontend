@@ -1,13 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Booking = () => {
   const navigate = useNavigate();
   const photoRef = useRef(null);
+  const [loading, setLoading] = useState(false); // 🧩 New state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // 🟣 Start loading
 
     const payload = {
       fullName: e.target.name.value.trim(),
@@ -35,10 +37,8 @@ const Booking = () => {
         `${import.meta.env.VITE_API_URL}/api/appointments`,
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true, // ✅ Important for cookies/CORS auth
+          headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
         }
       );
 
@@ -47,6 +47,8 @@ const Booking = () => {
     } catch (err) {
       console.error("❌ Error saving appointment:", err.response?.data || err);
       alert("Failed to book appointment. Please try again later.");
+    } finally {
+      setLoading(false); // 🟢 Stop loading
     }
   };
 
@@ -60,10 +62,7 @@ const Booking = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Full Name */}
           <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
               Full Name
             </label>
             <input
@@ -78,10 +77,7 @@ const Booking = () => {
 
           {/* Phone */}
           <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
               Phone Number
             </label>
             <input
@@ -96,10 +92,7 @@ const Booking = () => {
 
           {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email Address
             </label>
             <input
@@ -114,10 +107,7 @@ const Booking = () => {
 
           {/* Date */}
           <div>
-            <label
-              htmlFor="date"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
               Date
             </label>
             <input
@@ -135,38 +125,10 @@ const Booking = () => {
               Address Details
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="area"
-                id="area"
-                placeholder="Area"
-                className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm"
-                required
-              />
-              <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="City"
-                className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm"
-                required
-              />
-              <input
-                type="text"
-                name="state"
-                id="state"
-                placeholder="State"
-                className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm"
-                required
-              />
-              <input
-                type="text"
-                name="post-code"
-                id="post-code"
-                placeholder="Post Code"
-                className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm"
-                required
-              />
+              <input type="text" name="area" id="area" placeholder="Area" required className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm" />
+              <input type="text" name="city" id="city" placeholder="City" required className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm" />
+              <input type="text" name="state" id="state" placeholder="State" required className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm" />
+              <input type="text" name="post-code" id="post-code" placeholder="Post Code" required className="w-full rounded-lg border border-gray-300 py-3 px-4 focus:border-[#6A64F1] focus:ring-1 focus:ring-[#6A64F1] outline-none shadow-sm" />
             </div>
           </div>
 
@@ -197,9 +159,14 @@ const Booking = () => {
           <div>
             <button
               type="submit"
-              className="w-full rounded-xl bg-[#6A64F1] py-3 px-6 text-lg font-semibold text-white shadow-lg hover:bg-[#574fd6] transition-all duration-300"
+              disabled={loading}
+              className={`w-full rounded-xl py-3 px-6 text-lg font-semibold text-white shadow-lg transition-all duration-300 ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#6A64F1] hover:bg-[#574fd6]"
+              }`}
             >
-              Book Appointment
+              {loading ? "Booking..." : "Book Appointment"}
             </button>
           </div>
         </form>
