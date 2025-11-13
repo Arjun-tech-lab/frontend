@@ -53,15 +53,16 @@ const SuccBooking = () => {
 
             {appointment.potholePhoto ? (
               <div className="mt-6">
-                <img
-                  src={`${backendImageUrl}${appointment.potholePhoto}`}
-                  alt="Pothole"
-                  className="w-64 h-64 object cover  rounded-lg shadow-lg"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/fallback-image.png"; // optional fallback
-                  }}
-                />
+               <img
+  src={appointment.potholePhoto}
+  alt="Pothole"
+  className="w-64 h-64 object-cover rounded-lg shadow-lg"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "/fallback-image.png"; // optional fallback
+  }}
+/>
+
               </div>
             ) : (
               <p className="text-gray-500 dark:text-gray-400 mt-4">No pothole image uploaded.</p>

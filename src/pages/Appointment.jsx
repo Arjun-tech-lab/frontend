@@ -113,11 +113,10 @@ const Appointment = () => {
                 <td className="py-2 px-4 border-b">
                   {appt.potholePhoto ? (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}
-/uploads/${appt.potholePhoto}`}
-                      alt="Pothole"
-                      className="w-20 h-20 object-cover rounded"
-                    />
+  src={appt.potholePhoto}
+  alt="Pothole"
+  className="w-20 h-20 object-cover rounded"
+/>
                   ) : (
                     "No image"
                   )}
