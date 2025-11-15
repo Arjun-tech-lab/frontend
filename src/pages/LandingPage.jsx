@@ -1,13 +1,13 @@
 import pothole from "../assets/image.png";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import image from "../assets/potholeacc.jpg"
+import image from "../assets/potholeacc.jpg";
 
 const LandingPage = () => {
   const [showText, setShowText] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowText(true), 500); // animation delay
+    const timer = setTimeout(() => setShowText(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -15,27 +15,26 @@ const LandingPage = () => {
     <>
       {/* Hero Section */}
       <section
-        className="relative min-h-screen flex flex-col items-center justify-center px-4 text-center text-white"
+        className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 text-center text-white"
         style={{
           backgroundImage: `url(${pothole})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
           <Link
             to="/Booking"
-            className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="inline-flex justify-between items-center py-1 px-3 sm:px-4 mb-7 text-xs sm:text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white"
             role="alert"
           >
-            <span className="text-sm font-medium">
+            <span className="font-medium text-center">
               Making Roads Safer, One Pothole at a Time
             </span>
             <svg
-              className="ml-2 w-5 h-5"
+              className="ml-2 w-4 h-4 sm:w-5 sm:h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 fillRule="evenodd"
@@ -46,7 +45,7 @@ const LandingPage = () => {
           </Link>
 
           <h1
-            className={`mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white transition-all duration-1000 ease-out ${
+            className={`mb-4 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight dark:text-white transition-all duration-1000 ${
               showText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
           >
@@ -54,26 +53,24 @@ const LandingPage = () => {
           </h1>
 
           <p
-            className={`mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-white transition-all duration-1000 ease-out delay-200 ${
+            className={`mb-8 text-sm sm:text-lg font-normal text-gray-100 lg:text-xl px-4 sm:px-10 md:px-28 dark:text-white transition-all duration-1000 delay-200 ${
               showText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
           >
-            Snap a photo, pay a small fee, and help fix dangerous potholes in
-            your neighbourhood . Together, we can make our roads safer for
-            everyone.
+            Snap a photo, pay a small fee, and help fix dangerous potholes in your
+            neighbourhood. Together, we can make our roads safer.
           </p>
 
-          <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+          <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-center sm:space-x-4">
             <Link
               to="/About"
-              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+              className="inline-flex justify-center items-center py-2 sm:py-3 px-5 text-sm sm:text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
             >
               Learn more
               <svg
-                className="ml-2 -mr-1 w-5 h-5"
+                className="ml-2 -mr-1 w-4 h-4 sm:w-5 sm:h-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   fillRule="evenodd"
@@ -82,226 +79,152 @@ const LandingPage = () => {
                 ></path>
               </svg>
             </Link>
-            
           </div>
-         
-          
         </div>
       </section>
 
       {/* How We Work Section */}
-      <section className="bg-gray-900 p-8 min-h-screen pt-20 pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+      <section className="bg-gray-900 p-6 sm:p-8 min-h-screen pt-20 pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="md:w-2/3 lg:w-1/2">
-            <h2 className="my-8 text-3xl font-bold text-white md:text-4xl">
+            <h2 className="my-8 text-3xl sm:text-4xl font-bold text-white">
               How We Work
             </h2>
-            <p className="text-gray-300">
+            <p className="text-gray-300 text-sm sm:text-base">
               Our process ensures potholes are reported, verified, and fixed as
               quickly as possible.
             </p>
           </div>
 
-          <div className="mt-16 grid divide-x divide-y divide-gray-600 overflow-hidden rounded-3xl border border-gray-600 text-gray-600 sm:grid-cols-2 lg:grid-cols-4 lg:divide-y-0">
-            {/* Step 1 */}
-            <div className="group relative bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-              <div className="relative space-y-6 py-12 p-8">
-                <div className="text-white text-4xl font-bold">1</div>
-                <h5 className="text-xl font-semibold text-white">
-                  Capture & Report
-                </h5>
-                <p className="text-gray-300">
-                  Snap a photo of a pothole in your neighborhood and upload it
-                  to our platform.
-                </p>
+          {/* Responsive Grid */}
+          <div className="mt-16 grid divide-y sm:divide-x sm:divide-y-0 divide-gray-600 rounded-3xl border border-gray-600 overflow-hidden text-gray-600 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((step) => (
+              <div
+                key={step}
+                className="group bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10"
+              >
+                <div className="relative space-y-6 py-12 p-6 sm:p-8">
+                  <div className="text-white text-4xl font-bold">{step}</div>
+                  <h5 className="text-xl font-semibold text-white">
+                    {step === 1 && "Capture & Report"}
+                    {step === 2 && "Pay a Small Fee"}
+                    {step === 3 && "Verification"}
+                    {step === 4 && "Pothole Fixed"}
+                  </h5>
+                  <p className="text-gray-300 text-sm">
+                    {step === 1 &&
+                      "Snap a photo of a pothole in your neighborhood and upload it to our platform."}
+                    {step === 2 &&
+                      "Contribute a small fee to help fund the verification and repair process."}
+                    {step === 3 &&
+                      "Our team validates the report and notifies local authorities."}
+                    {step === 4 &&
+                      "Repairs are carried out and you’ll be updated once your pothole is fixed."}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="group relative bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-              <div className="relative space-y-6 py-12 p-8">
-                <div className="text-white text-4xl font-bold">2</div>
-                <h5 className="text-xl font-semibold text-white">
-                  Pay a Small Fee
-                </h5>
-                <p className="text-gray-300">
-                  Contribute a small fee to help fund the verification and
-                  repair process.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="group relative bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-              <div className="relative space-y-6 py-12 p-8">
-                <div className="text-white text-4xl font-bold">3</div>
-                <h5 className="text-xl font-semibold text-white">
-                  Verification
-                </h5>
-                <p className="text-gray-300">
-                  Our team validates the report, ensuring the pothole needs
-                  fixing and notifying local authorities.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 4 */}
-            <div className="group relative bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-              <div className="relative space-y-6 py-12 p-8">
-                <div className="text-white text-4xl font-bold">4</div>
-                <h5 className="text-xl font-semibold text-white">
-                  Pothole Fixed
-                </h5>
-                <p className="text-gray-300">
-                  Repairs are carried out and you’ll be updated once your
-                  reported pothole is fixed.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
       {/*  accidents sections */}
-      <div className="max-w-screen-xl mx-auto py-8 px-4 lg:py-16 lg:px-6 ">
-      <div className="text-center mb-10">
-        <h2 className="text-4xl tracking-tight font-bold text-primary-800">
-          Highlighted Features
-        </h2>
-      </div>
+<div className="max-w-screen-xl mx-auto py-8 px-4 lg:py-16 lg:px-6">
+  <div className="text-center mb-10">
+    <h2 className="text-4xl tracking-tight font-bold text-black">
+      Highlighted Features
+    </h2>
+  </div>
 
-      <div className="flex flex-col md:flex-row">
-        {/* Can Help Image */}
-        <div className="mr-0 md:mr-8 mb-6 md:mb-0">
-          <img
-            className="w-1/2 md:w-full mx-auto rounded-2xl shadow-lg object-cover"
-            src={image}
-            alt="can_help_banner"
-          />
-        </div>
-
-        {/* Feature Cards */}
-        <div className="flex-1 flex flex-col sm:flex-row flex-wrap -mb-4 -mx-2">
-          <div className="w-full sm:w-1/2 mb-4 px-2">
-            <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
-              <h3 className="text-2xl font-bold text-md mb-6">
-                Millions of Accidents Annually
-              </h3>
-              <p className="text-sm">
-                Potholes are responsible for over 2 million vehicle accidents annually in India alone. Many of these accidents occur because drivers swerve suddenly to avoid potholes or lose control of their vehicles on damaged roads.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full sm:w-1/2 mb-4 px-2">
-            <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
-              <h3 className="text-2xl font-bold text-md mb-6">
-                Costly Vehicle Damage
-              </h3>
-              <p className="text-sm">
-                Cars, motorcycles, and bicycles often suffer suspension damage, flat tires, and alignment problems from pothole impacts. Collectively, drivers spend billions of dollars annually repairing pothole-related damages, money that could be avoided with timely road maintenance.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full sm:w-1/2 mb-4 px-2">
-            <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
-              <h3 className="text-2xl font-bold text-md mb-6">
-                Delayed Emergency Response
-              </h3>
-              <p className="text-sm">
-                Poor roads with potholes slow down emergency services like ambulances and fire trucks. Delays caused by damaged roads can worsen outcomes for accident victims and emergency situations.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full sm:w-1/2 mb-4 px-2">
-            <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
-              <h3 className="text-2xl font-bold text-md mb-6">
-                Economic and Social Impact
-              </h3>
-              <p className="text-sm">
-                Besides personal losses, potholes affect local economies. Delivery services, public transportation, and businesses face delays, increased maintenance costs, and lost productivity because of unsafe roads.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+    {/* Image Section */}
+    <div className="w-full lg:w-1/2 flex justify-center">
+      <img
+        className="w-3/4 md:w-2/3 lg:w-full max-w-lg rounded-2xl shadow-xl object-cover"
+        src={image}
+        alt="can_help_banner"
+      />
     </div>
 
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Section */}
+    {/* Feature Cards */}
+    <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      
+      {/* Card Template */}
+      {[
+        {
+          title: "Millions of Accidents Annually",
+          text: "Potholes cause over 2 million accidents every year due to sudden swerves or loss of vehicle control.",
+        },
+        {
+          title: "Costly Vehicle Damage",
+          text: "Suspension failure, flat tires, and wheel misalignment cost drivers billions every year.",
+        },
+        {
+          title: "Delayed Emergency Response",
+          text: "Ambulances and emergency vehicles get delayed on pothole-filled roads, worsening outcomes.",
+        },
+        {
+          title: "Economic and Social Impact",
+          text: "Potholes slow deliveries, hurt businesses, and cause major productivity loss across cities.",
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="h-full py-6 px-6 bg-gray-800 rounded-xl border border-gray-700 shadow-md shadow-black/20 hover:shadow-xl hover:shadow-black/30 transition-all duration-300"
+        >
+          <h3 className="text-xl font-semibold mb-3 text-white">
+            {item.title}
+          </h3>
+          <p className="text-sm text-gray-300 leading-relaxed">{item.text}</p>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-10 px-4">
+        <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h4 className="text-lg font-bold mb-4">PotYourHoles</h4>
-            <p>
-              PotYourHoles is a community-driven platform to report, fund, and
-              fix potholes — making roads safer for everyone.
+            <h4 className="text-lg font-bold mb-3">PotYourHoles</h4>
+            <p className="text-sm">
+              A platform to report, fund, and fix potholes — making roads safer
+              for everyone.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#how-it-works" className="hover:text-gray-300">
-                  How It Works
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-gray-300">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-gray-300">
-                  Contact
-                </a>
-              </li>
+            <h4 className="text-lg font-bold mb-3">Quick Links</h4>
+            <ul className="space-y-2 text-sm">
+              <li>How It Works</li>
+              <li>About Us</li>
+              <li>Contact</li>
             </ul>
           </div>
 
-          {/* Contact Section */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Contact Us</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="mailto:support@potyourholes.com" className="hover:text-gray-300">
-                  support@potyourholes.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+15551234567" className="hover:text-gray-300">
-                  +91 6360726962
-                </a>
-              </li>
+            <h4 className="text-lg font-bold mb-3">Contact Us</h4>
+            <ul className="space-y-2 text-sm">
+              <li>support@potyourholes.com</li>
+              <li>+91 6360726962</li>
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
-            <h4 className="text-lg font-bold mb-4"> </h4>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-blue-400">
-                <i className="fab fa-facebook fa-lg"></i>
-              </a>
-              <a href="#" className="hover:text-blue-400">
-                <i className="fab fa-twitter fa-lg"></i>
-              </a>
-              <a href="#" className="hover:text-pink-500">
-                <i className="fab fa-instagram fa-lg"></i>
-              </a>
+            <h4 className="text-lg font-bold mb-3">Follow Us</h4>
+            <div className="flex space-x-4 text-lg">
+              <span>📘</span>
+              <span>🐦</span>
+              <span>📸</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom Text */}
-        <div className="text-center mt-8">
-          <p>© {new Date().getFullYear()} PotYourHoles. All rights reserved.</p>
+        <div className="text-center mt-8 text-sm">
+          © {new Date().getFullYear()} PotYourHoles. All rights reserved.
         </div>
-      </div>
-    </footer>
+      </footer>
     </>
   );
 };
